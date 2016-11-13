@@ -1,0 +1,672 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="anki," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="AwesomeTTS(MDX Server版)使用说明Anki用户在使用AwesomeTTS插件时，一般有两种选择：
+
+一种是百度有道等国内服务商，速度快但发音质量一般。
+另一种是选取Oxford, Collins等英英词典发音，但服务器在海外音频下载慢。MDX Server通过读取词典文件，对外部提供标准的HTTP服务，为AwesomeTTS提供了音频下载接口。现将AwesomeTTS修改，适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AwesomeTTS (MDX Server版)使用说明">
+<meta property="og:url" content="https://ninja33.github.io/20161113/awesometts-mdx-server/index.html">
+<meta property="og:site_name" content="老黄老巢">
+<meta property="og:description" content="AwesomeTTS(MDX Server版)使用说明Anki用户在使用AwesomeTTS插件时，一般有两种选择：
+
+一种是百度有道等国内服务商，速度快但发音质量一般。
+另一种是选取Oxford, Collins等英英词典发音，但服务器在海外音频下载慢。MDX Server通过读取词典文件，对外部提供标准的HTTP服务，为AwesomeTTS提供了音频下载接口。现将AwesomeTTS修改，适配">
+<meta property="og:image" content="https://ninja33.github.io/20161113/awesometts-mdx-server/awesometts-mdx-server-001.jpg">
+<meta property="og:image" content="https://ninja33.github.io/20161113/awesometts-mdx-server/awesometts-mdx-server-002.jpg">
+<meta property="og:image" content="https://ninja33.github.io/20161113/awesometts-mdx-server/awesometts-mdx-server-003.jpg">
+<meta property="og:image" content="https://ninja33.github.io/20161113/awesometts-mdx-server/awesometts-mdx-server-004.jpg">
+<meta property="og:updated_time" content="2016-11-13T15:10:32.039Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AwesomeTTS (MDX Server版)使用说明">
+<meta name="twitter:description" content="AwesomeTTS(MDX Server版)使用说明Anki用户在使用AwesomeTTS插件时，一般有两种选择：
+
+一种是百度有道等国内服务商，速度快但发音质量一般。
+另一种是选取Oxford, Collins等英英词典发音，但服务器在海外音频下载慢。MDX Server通过读取词典文件，对外部提供标准的HTTP服务，为AwesomeTTS提供了音频下载接口。现将AwesomeTTS修改，适配">
+<meta name="twitter:image" content="https://ninja33.github.io/20161113/awesometts-mdx-server/awesometts-mdx-server-001.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://ninja33.github.io/20161113/awesometts-mdx-server/"/>
+
+
+  <title> AwesomeTTS (MDX Server版)使用说明 | 老黄老巢 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">老黄老巢</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">御用发呆处</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AwesomeTTS (MDX Server版)使用说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-13T20:01:11+08:00" content="2016-11-13">
+              2016-11-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/20161113/awesometts-mdx-server/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="20161113/awesometts-mdx-server/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="AwesomeTTS-MDX-Server版-使用说明"><a href="#AwesomeTTS-MDX-Server版-使用说明" class="headerlink" title="AwesomeTTS(MDX Server版)使用说明"></a>AwesomeTTS(MDX Server版)使用说明</h4><p>Anki用户在使用AwesomeTTS插件时，一般有两种选择：</p>
+<ul>
+<li>一种是百度有道等国内服务商，速度快但发音质量一般。</li>
+<li>另一种是选取Oxford, Collins等英英词典发音，但服务器在海外音频下载慢。<br>MDX Server通过读取词典文件，对外部提供标准的HTTP服务，为AwesomeTTS提供了音频下载接口。<br>现将AwesomeTTS修改，适配LDOCE6朗文英英词典，配合MDX Server，实现了朗文6单词音频的下载。<br>使用方法如下：<a id="more"></a>
+</li>
+</ul>
+<h5 id="运行MDX-Server并选取朗文英英词典"><a href="#运行MDX-Server并选取朗文英英词典" class="headerlink" title="运行MDX Server并选取朗文英英词典"></a>运行MDX Server并选取朗文英英词典</h5><ul>
+<li>将mdx-server.zip文件解压至任意目录后，点击运行mdx-server.exe，弹窗内选择本地mdx文件。<img src="/20161113/awesometts-mdx-server/awesometts-mdx-server-001.jpg" alt="awesometts-mdx-server-001.jpg" title=""></li>
+<li>console窗口内显示port:8000 表明服务器运行成功，等待外部请求。<img src="/20161113/awesometts-mdx-server/awesometts-mdx-server-002.jpg" alt="awesometts-mdx-server-002.jpg" title="">
+</li>
+</ul>
+<h5 id="运行AwesomeTTS生成Anki卡片音频"><a href="#运行AwesomeTTS生成Anki卡片音频" class="headerlink" title="运行AwesomeTTS生成Anki卡片音频"></a>运行AwesomeTTS生成Anki卡片音频</h5><ul>
+<li>将AwesomeTTS.zip文件解压至“我的文档\Anki\addons”目录后，重启anki激活插件。<img src="/20161113/awesometts-mdx-server/awesometts-mdx-server-003.jpg" alt="awesometts-mdx-server-003.jpg" title=""></li>
+<li>在Anki浏览器AwesomeTTS界面，选择LDOCE6 on MDX server 服务，并选择英音或者美音生成音频。<img src="/20161113/awesometts-mdx-server/awesometts-mdx-server-004.jpg" alt="awesometts-mdx-server-004.jpg" title="">
+</li>
+</ul>
+<h4 id="AwesomeTTS-MDX-Server版-视频解说"><a href="#AwesomeTTS-MDX-Server版-视频解说" class="headerlink" title="AwesomeTTS(MDX Server版)视频解说"></a>AwesomeTTS(MDX Server版)视频解说</h4><ul>
+<li><embed src="http://player.youku.com/player.php/sid/XMTgxMDIwODc3Ng==/v.swf" allowfullscreen="true" quality="high" width="800" height="500" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">
+
+</li>
+</ul>
+<h4 id="AwesomeTTS-MDX-Server版-文件下载"><a href="#AwesomeTTS-MDX-Server版-文件下载" class="headerlink" title="AwesomeTTS(MDX Server版)文件下载"></a>AwesomeTTS(MDX Server版)文件下载</h4><a href="/20161113/awesometts-mdx-server/awesometts-mdx-server.zip" title="awesometts-mdx-server.zip">awesometts-mdx-server.zip</a>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/anki/" rel="tag">#anki</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20161113/mdx-server/" rel="next" title="Anki 制卡基础服务 MDX Server 使用说明">
+                <i class="fa fa-chevron-left"></i> Anki 制卡基础服务 MDX Server 使用说明
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="20161113/awesometts-mdx-server/"
+     data-title="AwesomeTTS (MDX Server版)使用说明"
+     data-content=""
+     data-url="https://ninja33.github.io/20161113/awesometts-mdx-server/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="20161113/awesometts-mdx-server/"
+           data-title="AwesomeTTS (MDX Server版)使用说明" data-url="https://ninja33.github.io/20161113/awesometts-mdx-server/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ninja33" />
+          <p class="site-author-name" itemprop="name">ninja33</p>
+          <p class="site-description motion-element" itemprop="description">技术，佛学，健身，背单词</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://ninja33.github.io/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#AwesomeTTS-MDX-Server版-使用说明"><span class="nav-number">1.</span> <span class="nav-text">AwesomeTTS(MDX Server版)使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行MDX-Server并选取朗文英英词典"><span class="nav-number">1.1.</span> <span class="nav-text">运行MDX Server并选取朗文英英词典</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行AwesomeTTS生成Anki卡片音频"><span class="nav-number">1.2.</span> <span class="nav-text">运行AwesomeTTS生成Anki卡片音频</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AwesomeTTS-MDX-Server版-视频解说"><span class="nav-number">2.</span> <span class="nav-text">AwesomeTTS(MDX Server版)视频解说</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AwesomeTTS-MDX-Server版-文件下载"><span class="nav-number">3.</span> <span class="nav-text">AwesomeTTS(MDX Server版)文件下载</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ninja33</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ninja33"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
