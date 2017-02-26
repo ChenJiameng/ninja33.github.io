@@ -1,0 +1,655 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="anki," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="简单粗暴的 Anki COCA 20000词表我根据奶爸的COCA20000词表做了个简单粗暴的自用词表(9500词汇)。
+COCA的美国当代语料库中最常用的20000词汇，其形式是包括ed，ing，ly等一个单词的多种形式的真正2万词汇，而不是估算的2万。
+每个人可以根据自己的能力先去掉前数千的高频单词(我这里去掉了4000)，然后根据单词变形表wordforms去除变形(去掉ed，ing，ly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单粗暴的Anki COCA 20000词表">
+<meta property="og:url" content="https://ninja33.github.io/20170226/coca-20000-collins/index.html">
+<meta property="og:site_name" content="老黄老巢">
+<meta property="og:description" content="简单粗暴的 Anki COCA 20000词表我根据奶爸的COCA20000词表做了个简单粗暴的自用词表(9500词汇)。
+COCA的美国当代语料库中最常用的20000词汇，其形式是包括ed，ing，ly等一个单词的多种形式的真正2万词汇，而不是估算的2万。
+每个人可以根据自己的能力先去掉前数千的高频单词(我这里去掉了4000)，然后根据单词变形表wordforms去除变形(去掉ed，ing，ly">
+<meta property="og:updated_time" content="2017-02-26T03:54:22.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单粗暴的Anki COCA 20000词表">
+<meta name="twitter:description" content="简单粗暴的 Anki COCA 20000词表我根据奶爸的COCA20000词表做了个简单粗暴的自用词表(9500词汇)。
+COCA的美国当代语料库中最常用的20000词汇，其形式是包括ed，ing，ly等一个单词的多种形式的真正2万词汇，而不是估算的2万。
+每个人可以根据自己的能力先去掉前数千的高频单词(我这里去掉了4000)，然后根据单词变形表wordforms去除变形(去掉ed，ing，ly">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://ninja33.github.io/20170226/coca-20000-collins/"/>
+
+
+  <title> 简单粗暴的Anki COCA 20000词表 | 老黄老巢 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">老黄老巢</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">御用发呆处</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                简单粗暴的Anki COCA 20000词表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T11:45:23+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/20170226/coca-20000-collins/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="20170226/coca-20000-collins/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="简单粗暴的-Anki-COCA-20000词表"><a href="#简单粗暴的-Anki-COCA-20000词表" class="headerlink" title="简单粗暴的 Anki COCA 20000词表"></a>简单粗暴的 Anki COCA 20000词表</h4><p>我根据奶爸的COCA20000词表做了个简单粗暴的自用词表(9500词汇)。</p>
+<p>COCA的美国当代语料库中最常用的20000词汇，其形式是包括ed，ing，ly等一个单词的多种形式的真正2万词汇，而不是估算的2万。</p>
+<p>每个人可以根据自己的能力先去掉前数千的高频单词(我这里去掉了4000)，然后根据单词变形表wordforms去除变形(去掉ed，ing，ly，s/es 等形式)，还剩下9500单词，根据自身能力其实还能去掉3000-5000词(记得在背诵时随手根据自己情况删掉)</p>
+<p>我觉得如果不是考试向的非英专日常学习，可以考虑这个，而不是GRE，SAT那种。<br>出于下面几个方面的考虑：</p>
+<ol>
+<li>所有的专用考试词表，包括我们自己划词的词表，其实都是偷懒。因为你想用定向考试词频，或者自己阅读的词频，来决定在最短的时间内，背出在你的目的范围(或者考试，或者日常阅读)内最有效的词汇。其实最常用的20000个都要背，不需要划范围。</li>
+<li>每次测试词汇量，其实都是偷懒出来的估算词汇量。其实20000个背完了就是20000词汇量，简单粗暴，不需要测算。</li>
+<li>GRE，SAT的考试向词汇，对于日常帮助不大，不管是阅读小说，看新闻，看美剧，看TED，大部分是用不到的。而这些小说，新闻，TED，美剧等要是能看懂，是提升兴趣的关键。花大量时间去背考试定向词汇，对日常提升兴趣意义不大。</li>
+<li>做减法的词汇表比做加法的词汇表，要来的有成就感和目的性。因为你知道总量就这些，你会越划越少，而不是每次都在想，还少了点什么。因为超出这个范围的单词，就是不需要背的。</li>
+</ol>
+<h4 id="简单粗暴的Anki-COCA-20000词表"><a href="#简单粗暴的Anki-COCA-20000词表" class="headerlink" title="简单粗暴的Anki COCA 20000词表"></a>简单粗暴的Anki COCA 20000词表</h4><ul>
+<li>含4000词频开始COCA20000单词，附加柯林斯英汉双解+Vocab简明/完整 解释</li>
+</ul>
+<a href="/20170226/coca-20000-collins/coca20000_collins.zip" title="coca20000_collins.zip">coca20000_collins.zip</a>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/anki/" rel="tag">#anki</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/20161113/awesometts-mdx-server/" rel="next" title="AwesomeTTS (MDX Server版)使用说明(含视频教程)">
+                <i class="fa fa-chevron-left"></i> AwesomeTTS (MDX Server版)使用说明(含视频教程)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="20170226/coca-20000-collins/"
+     data-title="简单粗暴的Anki COCA 20000词表"
+     data-content=""
+     data-url="https://ninja33.github.io/20170226/coca-20000-collins/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="20170226/coca-20000-collins/"
+           data-title="简单粗暴的Anki COCA 20000词表" data-url="https://ninja33.github.io/20170226/coca-20000-collins/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ninja33" />
+          <p class="site-author-name" itemprop="name">ninja33</p>
+          <p class="site-description motion-element" itemprop="description">技术，佛学，健身，背单词</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://ninja33.github.io/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单粗暴的-Anki-COCA-20000词表"><span class="nav-number">1.</span> <span class="nav-text">简单粗暴的 Anki COCA 20000词表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单粗暴的Anki-COCA-20000词表"><span class="nav-number">2.</span> <span class="nav-text">简单粗暴的Anki COCA 20000词表</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ninja33</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ninja33"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
