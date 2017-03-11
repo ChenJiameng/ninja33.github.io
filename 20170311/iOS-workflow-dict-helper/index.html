@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="anki iOS workflow," />
 
 
 
@@ -84,25 +84,19 @@
 
 
 
-<meta name="description" content="MDX Server 使用说明目前流行的MDX词典文件只能在Mdict, GoldenDict, 欧路，深蓝等词典软件中使用，而不能将内容对外输出。MDX Server通过读取MDX、MDD格式的词典文件，对外部提供一个标准的HTTP服务接口。使得一些需要词典服务的软件，比如Kindlemate，Anki划词助手以及其他工具可以利用这个本地服务，灵活选取所需的MDX词典，批量或者单独获取单词的解释">
+<meta name="description" content="划词制卡助手 for iOS在之前的文章《Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)》里所提到的插件工具，只能在电脑端使用。而我们大部分的碎片时间可能在路上，在等电梯的时候，在地铁里。我们的阅读工具，可能是手机。所以，一直在想，怎么在自己的手机上也实现划词助手，一键制卡的功能。因为iOS应用的权限限制，一直没找到好的办法。直到最近看见少数派作者JailBreakHum的一篇有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Anki 制卡基础服务 MDX Server 使用说明">
-<meta property="og:url" content="https://ninja33.github.io/20161113/mdx-server/index.html">
+<meta property="og:title" content="iOS workflow 划词制卡助手">
+<meta property="og:url" content="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/index.html">
 <meta property="og:site_name" content="老黄老巢">
-<meta property="og:description" content="MDX Server 使用说明目前流行的MDX词典文件只能在Mdict, GoldenDict, 欧路，深蓝等词典软件中使用，而不能将内容对外输出。MDX Server通过读取MDX、MDD格式的词典文件，对外部提供一个标准的HTTP服务接口。使得一些需要词典服务的软件，比如Kindlemate，Anki划词助手以及其他工具可以利用这个本地服务，灵活选取所需的MDX词典，批量或者单独获取单词的解释">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-001.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-002.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-003.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-004.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-005.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-006.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-007.jpg">
-<meta property="og:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-008.jpg">
-<meta property="og:updated_time" content="2016-11-13T15:10:19.795Z">
+<meta property="og:description" content="划词制卡助手 for iOS在之前的文章《Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)》里所提到的插件工具，只能在电脑端使用。而我们大部分的碎片时间可能在路上，在等电梯的时候，在地铁里。我们的阅读工具，可能是手机。所以，一直在想，怎么在自己的手机上也实现划词助手，一键制卡的功能。因为iOS应用的权限限制，一直没找到好的办法。直到最近看见少数派作者JailBreakHum的一篇有">
+<meta property="og:image" content="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/iOS_workflow_screen.png">
+<meta property="og:image" content="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/iOS-workflow-dict-helper.png">
+<meta property="og:updated_time" content="2017-03-11T15:22:38.123Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Anki 制卡基础服务 MDX Server 使用说明">
-<meta name="twitter:description" content="MDX Server 使用说明目前流行的MDX词典文件只能在Mdict, GoldenDict, 欧路，深蓝等词典软件中使用，而不能将内容对外输出。MDX Server通过读取MDX、MDD格式的词典文件，对外部提供一个标准的HTTP服务接口。使得一些需要词典服务的软件，比如Kindlemate，Anki划词助手以及其他工具可以利用这个本地服务，灵活选取所需的MDX词典，批量或者单独获取单词的解释">
-<meta name="twitter:image" content="https://ninja33.github.io/20161113/mdx-server/mdx-server-001.jpg">
+<meta name="twitter:title" content="iOS workflow 划词制卡助手">
+<meta name="twitter:description" content="划词制卡助手 for iOS在之前的文章《Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)》里所提到的插件工具，只能在电脑端使用。而我们大部分的碎片时间可能在路上，在等电梯的时候，在地铁里。我们的阅读工具，可能是手机。所以，一直在想，怎么在自己的手机上也实现划词助手，一键制卡的功能。因为iOS应用的权限限制，一直没找到好的办法。直到最近看见少数派作者JailBreakHum的一篇有">
+<meta name="twitter:image" content="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/iOS_workflow_screen.png">
 
 
 
@@ -123,10 +117,10 @@
 
 
 
-  <link rel="canonical" href="https://ninja33.github.io/20161113/mdx-server/"/>
+  <link rel="canonical" href="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/"/>
 
 
-  <title> Anki 制卡基础服务 MDX Server 使用说明 | 老黄老巢 </title>
+  <title> iOS workflow 划词制卡助手 | 老黄老巢 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +250,7 @@
             
             
               
-                Anki 制卡基础服务 MDX Server 使用说明
+                iOS workflow 划词制卡助手
               
             
           </h1>
@@ -268,8 +262,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T19:38:38+08:00" content="2016-11-13">
-              2016-11-13
+            <time itemprop="dateCreated" datetime="2017-03-11T22:37:21+08:00" content="2017-03-11">
+              2017-03-11
             </time>
           </span>
 
@@ -279,8 +273,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/20161113/mdx-server/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="20161113/mdx-server/" itemprop="commentsCount"></span>
+                <a href="/20170311/iOS-workflow-dict-helper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="20170311/iOS-workflow-dict-helper/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -303,25 +297,33 @@
       
 
       
-        <h4 id="MDX-Server-使用说明"><a href="#MDX-Server-使用说明" class="headerlink" title="MDX Server 使用说明"></a>MDX Server 使用说明</h4><p>目前流行的MDX词典文件只能在Mdict, GoldenDict, 欧路，深蓝等词典软件中使用，而不能将内容对外输出。MDX Server通过读取MDX、MDD格式的词典文件，对外部提供一个标准的HTTP服务接口。使得一些需要词典服务的软件，比如Kindlemate，Anki划词助手以及其他工具可以利用这个本地服务，灵活选取所需的MDX词典，批量或者单独获取单词的解释。<br>下面列出具体安装使用方法:<br><a id="more"></a></p>
+        <h4 id="划词制卡助手-for-iOS"><a href="#划词制卡助手-for-iOS" class="headerlink" title="划词制卡助手 for iOS"></a>划词制卡助手 for iOS</h4><p>在之前的文章《<a href="/20160817/anki-dict-helper-chrome-extension/" title="Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)">Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)</a>》里所提到的插件工具，只能在电脑端使用。而我们大部分的碎片时间可能在路上，在等电梯的时候，在地铁里。我们的阅读工具，可能是手机。所以，一直在想，怎么在自己的手机上也实现划词助手，一键制卡的功能。因为iOS应用的权限限制，一直没找到好的办法。直到最近看见少数派作者JailBreakHum的一篇有关iOS workflow的教程《<a href="https://sspai.com/post/35857#03" target="_blank" rel="external">Workflow 教程（八）：利用新的请求方法打造 Web 小程序</a>》，其中有讲到怎么将单词存放到扇贝网。这让我找到了思路：本地存储和应用间通讯不行，那可以在存到网络盘再导入嘛。同时，iOS workflow的强大功能，使取词，翻译，网络存储，都成为了可能。</p>
+<p>大概的思路如下：</p>
 <ol>
-<li>将zip文件解压至任意目录后，点击运行mdx_server.exe，弹窗内选择本地mdx文件。<img src="/20161113/mdx-server/mdx-server-001.jpg" alt="mdx-server-001.jpg" title=""></li>
-<li>console窗口内显示port:8000 表明服务器运行成功，等待外部请求。<img src="/20161113/mdx-server/mdx-server-002.jpg" alt="mdx-server-002.jpg" title=""></li>
-<li>在浏览器输入 <code>http://localhost:8000/{word}</code>，<code>{word}</code>为待查单词，比如<code>http://localhost:8000/test</code> ，通过mdx-server查询，浏览器内将显示相应词典的解释，并可点击播放词典内置音频。</li>
-<li>如需引用外部css或脚本等外部资源，可将资源放在mdx子目录。</li>
-<li>下面列出mdx-server运行状况(与GoldenDict对比)</li>
+<li>从新闻应用或者浏览器中选中句子，或者直接分享到workflow，或者复制到剪贴板，然后从通知中心启动workflow 脚本。</li>
+<li>在脚本中，用正则表达式将句子打散成单词，然后提示用户选中要翻译制卡的单词（相当于划词了，只不过选的是句子）</li>
+<li>将选中的单词，通过网络API，翻译后获得音标，解释，并将上下文例句做简单处理。</li>
+<li>通过调用dropbox API(workflow现成模块)，或者Ankiconnect(Anki插件)，或者扇贝单词API，将制卡信息存入相应的目的端。</li>
+<li>通过Anki电脑端的文本文件导入功能，或者扇贝单词的客户端，进一步学习含上下文例句的情景化单词，印象深刻，有助于记忆。</li>
 </ol>
+<img src="/20170311/iOS-workflow-dict-helper/iOS_workflow_screen.png" alt="iOS_workflow_screen.png" title="">
+<p>下面是我做的两个视频，一个是演示视频，一个是制作简介。</p>
 <ul>
-<li>柯林斯五星英汉双解<img src="/20161113/mdx-server/mdx-server-003.jpg" alt="mdx-server-003.jpg" title=""></li>
-<li>朗文6<img src="/20161113/mdx-server/mdx-server-004.jpg" alt="mdx-server-004.jpg" title=""></li>
-<li>麦克米兰<img src="/20161113/mdx-server/mdx-server-005.jpg" alt="mdx-server-005.jpg" title=""></li>
-<li>牛津高阶学习词典第八版<img src="/20161113/mdx-server/mdx-server-006.jpg" alt="mdx-server-006.jpg" title=""></li>
-<li>新牛津英汉双解第二版<img src="/20161113/mdx-server/mdx-server-007.jpg" alt="mdx-server-007.jpg" title=""></li>
-<li>Vocabulary.com<img src="/20161113/mdx-server/mdx-server-008.jpg" alt="mdx-server-008.jpg" title="">
-</li>
+<li><a href="http://v.youku.com/v_show/id_XMjYzMDM0ODU2OA==.html" target="_blank" rel="external">iOS workflow 划词制卡助手演示</a></li>
+<li><a href="http://v.youku.com/v_show/id_XMjYzMDM1MTEyMA==.html" target="_blank" rel="external">iOS workflow 划词制卡助手制作简介</a></li>
 </ul>
-<h4 id="MDX-Server-使用视频"><a href="#MDX-Server-使用视频" class="headerlink" title="MDX Server 使用视频"></a>MDX Server 使用视频</h4><p>有关MDX Server的具体应用案例之一:配合Anki插件AwesomeTTS下载音频，可见<a href="/20161113/awesometts-mdx-server/" title="AwesomeTTS (MDX Server版)使用说明(含视频教程)">AwesomeTTS (MDX Server版)使用说明(含视频教程)</a></p>
-<h4 id="MDX-Server-文件下载"><a href="#MDX-Server-文件下载" class="headerlink" title="MDX Server 文件下载"></a>MDX Server 文件下载</h4><a href="/20161113/mdx-server/mdx-server-v0.1.2.zip" title="mdx-server-v0.1.2.zip">mdx-server-v0.1.2.zip</a>
+<h4 id="iOS-workflow-工作流"><a href="#iOS-workflow-工作流" class="headerlink" title="iOS workflow 工作流"></a>iOS workflow 工作流</h4><p>考虑到单词查询模块和制卡目的端的课替换性。将iOS workflow的脚本做成了可层级调用的子脚本。以方便将来的替换。<br><img src="/20170311/iOS-workflow-dict-helper/iOS-workflow-dict-helper.png" alt="iOS-workflow-dict-helper.png" title=""></p>
+<h4 id="iOS-workflow-脚本下载"><a href="#iOS-workflow-脚本下载" class="headerlink" title="iOS workflow 脚本下载"></a>iOS workflow 脚本下载</h4><p>请先装好workflow，然后用iOS浏览器Safari打开下面的链接。</p>
+<ol>
+<li><a href="https://workflow.is/workflows/04a64d62dbc34d81ae86436207cde1a3" target="_blank" rel="external">划词助手(Share)</a></li>
+<li><a href="https://workflow.is/workflows/74d89bcabd4745899c00c79e51b693ad" target="_blank" rel="external">划词助手(Clipboard)</a></li>
+<li><a href="https://workflow.is/workflows/b77a9fa423524fe6a6ab5f3d9d239e06" target="_blank" rel="external">划词助手主程序</a></li>
+<li><a href="https://workflow.is/workflows/f5e0b6a1916042eabbad1b2bcb4d43a0" target="_blank" rel="external">获取词典数据</a></li>
+<li><a href="https://workflow.is/workflows/f2e6633da4444717b10e257a0c6387a1" target="_blank" rel="external">保存到Dropbox</a></li>
+<li><a href="https://workflow.is/workflows/feae6c5b1b5b4e4a8382b59251017d02" target="_blank" rel="external">保存到Ankiconnect</a></li>
+<li><a href="https://workflow.is/workflows/ae2fc762319547cb8fe0e7c3ff3bce8a" target="_blank" rel="external">保存到扇贝网(No Token)</a></li>
+</ol>
+<p>另外，扇贝网token的获取方式，详见少数派作者JailBreakHum的文章《<a href="https://sspai.com/post/35857#03" target="_blank" rel="external">Workflow 教程（八）：利用新的请求方法打造 Web 小程序</a>》</p>
 
       
     </div>
@@ -342,22 +344,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/anki-iOS-workflow/" rel="tag">#anki iOS workflow</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/20161006/anki-template/" rel="next" title="Anki 定制化基本和工具配套模板索引">
-                <i class="fa fa-chevron-left"></i> Anki 定制化基本和工具配套模板索引
+              <a href="/20170306/coca-20000-apkg/" rel="next" title="COCA 20000词表 (Anki APKG格式)">
+                <i class="fa fa-chevron-left"></i> COCA 20000词表 (Anki APKG格式)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/20161113/awesometts-mdx-server/" rel="prev" title="AwesomeTTS (MDX Server版)使用说明(含视频教程)">
-                AwesomeTTS (MDX Server版)使用说明(含视频教程) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -372,10 +376,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="20161113/mdx-server/"
-     data-title="Anki 制卡基础服务 MDX Server 使用说明"
+        <div class="ds-share flat" data-thread-key="20170311/iOS-workflow-dict-helper/"
+     data-title="iOS workflow 划词制卡助手"
      data-content=""
-     data-url="https://ninja33.github.io/20161113/mdx-server/">
+     data-url="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -402,8 +406,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="20161113/mdx-server/"
-           data-title="Anki 制卡基础服务 MDX Server 使用说明" data-url="https://ninja33.github.io/20161113/mdx-server/">
+      <div class="ds-thread" data-thread-key="20170311/iOS-workflow-dict-helper/"
+           data-title="iOS workflow 划词制卡助手" data-url="https://ninja33.github.io/20170311/iOS-workflow-dict-helper/">
       </div>
     
   </div>
@@ -504,7 +508,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#MDX-Server-使用说明"><span class="nav-number">1.</span> <span class="nav-text">MDX Server 使用说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MDX-Server-使用视频"><span class="nav-number">2.</span> <span class="nav-text">MDX Server 使用视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MDX-Server-文件下载"><span class="nav-number">3.</span> <span class="nav-text">MDX Server 文件下载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#划词制卡助手-for-iOS"><span class="nav-number">1.</span> <span class="nav-text">划词制卡助手 for iOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-workflow-工作流"><span class="nav-number">2.</span> <span class="nav-text">iOS workflow 工作流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS-workflow-脚本下载"><span class="nav-number">3.</span> <span class="nav-text">iOS workflow 脚本下载</span></a></li></ol></div>
             
           </div>
         </section>

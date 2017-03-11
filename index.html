@@ -249,6 +249,133 @@
             
               
                 
+                <a class="post-title-link" href="/20170311/iOS-workflow-dict-helper/" itemprop="url">
+                  iOS workflow 划词制卡助手
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T22:37:21+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/20170311/iOS-workflow-dict-helper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="20170311/iOS-workflow-dict-helper/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="划词制卡助手-for-iOS"><a href="#划词制卡助手-for-iOS" class="headerlink" title="划词制卡助手 for iOS"></a>划词制卡助手 for iOS</h4><p>在之前的文章《<a href="/20160817/anki-dict-helper-chrome-extension/" title="Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)">Chrome插件《Anki 划词制卡助手》使用说明(含视频教程)</a>》里所提到的插件工具，只能在电脑端使用。而我们大部分的碎片时间可能在路上，在等电梯的时候，在地铁里。我们的阅读工具，可能是手机。所以，一直在想，怎么在自己的手机上也实现划词助手，一键制卡的功能。因为iOS应用的权限限制，一直没找到好的办法。直到最近看见少数派作者JailBreakHum的一篇有关iOS workflow的教程《<a href="https://sspai.com/post/35857#03" target="_blank" rel="external">Workflow 教程（八）：利用新的请求方法打造 Web 小程序</a>》，其中有讲到怎么将单词存放到扇贝网。这让我找到了思路：本地存储和应用间通讯不行，那可以在存到网络盘再导入嘛。同时，iOS workflow的强大功能，使取词，翻译，网络存储，都成为了可能。</p>
+<p>大概的思路如下：</p>
+<ol>
+<li>从新闻应用或者浏览器中选中句子，或者直接分享到workflow，或者复制到剪贴板，然后从通知中心启动workflow 脚本。</li>
+<li>在脚本中，用正则表达式将句子打散成单词，然后提示用户选中要翻译制卡的单词（相当于划词了，只不过选的是句子）</li>
+<li>将选中的单词，通过网络API，翻译后获得音标，解释，并将上下文例句做简单处理。</li>
+<li>通过调用dropbox API(workflow现成模块)，或者Ankiconnect(Anki插件)，或者扇贝单词API，将制卡信息存入相应的目的端。</li>
+<li>通过Anki电脑端的文本文件导入功能，或者扇贝单词的客户端，进一步学习含上下文例句的情景化单词，印象深刻，有助于记忆。</li>
+</ol>
+<img src="/20170311/iOS-workflow-dict-helper/iOS_workflow_screen.png" alt="iOS_workflow_screen.png" title="">
+<p>下面是我做的两个视频，一个是演示视频，一个是制作简介。</p>
+<ul>
+<li><a href="http://v.youku.com/v_show/id_XMjYzMDM0ODU2OA==.html" target="_blank" rel="external">iOS workflow 划词制卡助手演示</a></li>
+<li><a href="http://v.youku.com/v_show/id_XMjYzMDM1MTEyMA==.html" target="_blank" rel="external">iOS workflow 划词制卡助手制作简介</a></li>
+</ul>
+<h4 id="iOS-workflow-工作流"><a href="#iOS-workflow-工作流" class="headerlink" title="iOS workflow 工作流"></a>iOS workflow 工作流</h4><p>考虑到单词查询模块和制卡目的端的课替换性。将iOS workflow的脚本做成了可层级调用的子脚本。以方便将来的替换。<br><img src="/20170311/iOS-workflow-dict-helper/iOS-workflow-dict-helper.png" alt="iOS-workflow-dict-helper.png" title=""></p>
+<h4 id="iOS-workflow-脚本下载"><a href="#iOS-workflow-脚本下载" class="headerlink" title="iOS workflow 脚本下载"></a>iOS workflow 脚本下载</h4><p>请先装好workflow，然后用iOS浏览器Safari打开下面的链接。</p>
+<ol>
+<li><a href="https://workflow.is/workflows/04a64d62dbc34d81ae86436207cde1a3" target="_blank" rel="external">划词助手(Share)</a></li>
+<li><a href="https://workflow.is/workflows/74d89bcabd4745899c00c79e51b693ad" target="_blank" rel="external">划词助手(Clipboard)</a></li>
+<li><a href="https://workflow.is/workflows/b77a9fa423524fe6a6ab5f3d9d239e06" target="_blank" rel="external">划词助手主程序</a></li>
+<li><a href="https://workflow.is/workflows/f5e0b6a1916042eabbad1b2bcb4d43a0" target="_blank" rel="external">获取词典数据</a></li>
+<li><a href="https://workflow.is/workflows/f2e6633da4444717b10e257a0c6387a1" target="_blank" rel="external">保存到Dropbox</a></li>
+<li><a href="https://workflow.is/workflows/feae6c5b1b5b4e4a8382b59251017d02" target="_blank" rel="external">保存到Ankiconnect</a></li>
+<li><a href="https://workflow.is/workflows/ae2fc762319547cb8fe0e7c3ff3bce8a" target="_blank" rel="external">保存到扇贝网(No Token)</a></li>
+</ol>
+<p>另外，扇贝网token的获取方式，详见少数派作者JailBreakHum的文章《<a href="https://sspai.com/post/35857#03" target="_blank" rel="external">Workflow 教程（八）：利用新的请求方法打造 Web 小程序</a>》</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/20170306/coca-20000-apkg/" itemprop="url">
                   COCA 20000词表 (Anki APKG格式)
                 </a>
@@ -1122,7 +1249,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1132,7 +1259,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
