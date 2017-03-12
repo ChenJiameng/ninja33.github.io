@@ -15,45 +15,68 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-import PyQt4
 import anki
 import aqt
 import hashlib
 import json
+import os.path
 import select
 import socket
-import urllib2
 
 
 #
 # Constants
 #
 
-API_VERSION = 1
+API_VERSION = 2
+TICK_INTERVAL = 25
+URL_TIMEOUT = 10
+URL_UPGRADE = 'https://raw.githubusercontent.com/FooSoft/anki-connect/master/anki_connect.py'
+NET_ADDRESS = '127.0.0.1'
+NET_BACKLOG = 5
+NET_PORT = 8765
 
 
 #
-# Audio helpers
+# General helpers
 #
 
-def audioBuildFilename(kana, kanji):
-    # filename = u'yomichan_{}'.format(kana)
-    # if kanji:
-    filename = u'_{}'.format(kanji)
-    filename += u'.mp3'
-    print "debug info from [audioBuildFilename] -- filename:" + filename
-    return filename
+try:
+    import urllib2
+    web = urllib2
+except ImportError:
+    from urllib import request
+    web = request
+
+try:
+    from PyQt4.QtCore import QTimer
+    from PyQt4.QtGui import QMessageBox
+except ImportError:
+    from PyQt5.QtCore import QTimer
+    from PyQt5.QtWidgets import QMessageBox
+
+try:
+    unicode
+except:
+    unicode = str
 
 
-def audioDownload(kana, kanji):
-    url = 'http://dict.youdao.com/dictvoice?audio={}'.format(urllib2.quote(kanji.encode('utf-8')))
-    # if kana:
-    #    url += '&kana={}'.format(urllib2.quote(kana.encode('utf-8')))
-    print "debug info from [audioDownload] -- audio url:" + url
-	
+#
+# Helpers
+#
+
+def makeBytes(data):
+    return data.encode('utf-8')
+
+
+def makeStr(data):
+    return data.decode('utf-8')
+
+
+def download(url):
     try:
-        resp = urllib2.urlopen(url)
-    except urllib2.URLError:
+        resp = web.urlopen(url, timeout=URL_TIMEOUT)
+    except web.URLError:
         return None
 
     if resp.code != 200:
@@ -62,16 +85,24 @@ def audioDownload(kana, kanji):
     return resp.read()
 
 
-def audioIsPlaceholder(data):
-    m = hashlib.md5()
-    m.update(data)
-    return m.hexdigest() == '7e2c2f954ef6051373ba916f000168dc'
-
-
 def audioInject(note, fields, filename):
     for field in fields:
         if field in note:
             note[field] += u'[sound:{}]'.format(filename)
+
+
+def verifyString(string):
+    t = type(string)
+    return t == str or t == unicode
+
+
+def verifyStringList(strings):
+    for s in strings:
+        if not verifyString(s):
+            return False
+
+    return True
+
 
 
 #
@@ -92,8 +123,8 @@ class AjaxClient:
     def __init__(self, sock, handler):
         self.sock = sock
         self.handler = handler
-        self.readBuff = ''
-        self.writeBuff = ''
+        self.readBuff = bytes()
+        self.writeBuff = bytes()
 
 
     def advance(self, recvSize=1024):
@@ -130,22 +161,22 @@ class AjaxClient:
             self.sock.close()
             self.sock = None
 
-        self.readBuff = ''
-        self.writeBuff = ''
+        self.readBuff = bytes()
+        self.writeBuff = bytes()
 
 
     def parseRequest(self, data):
-        parts = data.split('\r\n\r\n', 1)
+        parts = data.split(makeBytes('\r\n\r\n'), 1)
         if len(parts) == 1:
             return None, 0
 
         headers = {}
-        for line in parts[0].split('\r\n'):
-            pair = line.split(': ')
+        for line in parts[0].split(makeBytes('\r\n')):
+            pair = line.split(makeBytes(': '))
             headers[pair[0]] = pair[1] if len(pair) > 1 else None
 
         headerLength = len(parts[0]) + 4
-        bodyLength = int(headers['Content-Length'])
+        bodyLength = int(headers.get(makeBytes('Content-Length'), 0))
         totalLength = headerLength + bodyLength
 
         if totalLength > len(data):
@@ -184,36 +215,43 @@ class AjaxServer:
 
 
     def advanceClients(self):
-        self.clients = filter(lambda c: c.advance(), self.clients)
+        self.clients = list(filter(lambda c: c.advance(), self.clients))
 
 
-    def listen(self, address='127.0.0.1', port=8765, backlog=5):
+    def listen(self):
         self.close()
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.setblocking(False)
-        self.sock.bind((address, port))
-        self.sock.listen(backlog)
+        self.sock.bind((NET_ADDRESS, NET_PORT))
+        self.sock.listen(NET_BACKLOG)
 
 
     def handlerWrapper(self, req):
-        body = json.dumps(self.handler(json.loads(req.body)))
-        resp = ''
+        if len(req.body) == 0:
+            body = makeBytes('AnkiConnect v.{}'.format(API_VERSION))
+        else:
+            try:
+                params = json.loads(makeStr(req.body))
+                body = makeBytes(json.dumps(self.handler(params)))
+            except ValueError:
+                body = json.dumps(None);
 
-        headers = {
-            'HTTP/1.1 200 OK': None,
-            'Content-Type': 'text/json',
-            'Content-Length': str(len(body))
-        }
+        resp = bytes()
+        headers = [
+            ['HTTP/1.1 200 OK', None],
+            ['Content-Type', 'text/json'],
+            ['Content-Length', str(len(body))]
+        ]
 
-        for key, value in headers.items():
+        for key, value in headers:
             if value is None:
-                resp += '{}\r\n'.format(key)
+                resp += makeBytes('{}\r\n'.format(key))
             else:
-                resp += '{}: {}\r\n'.format(key, value)
+                resp += makeBytes('{}: {}\r\n'.format(key, value))
 
-        resp += '\r\n'
+        resp += makeBytes('\r\n')
         resp += body
 
         return resp
@@ -231,25 +269,71 @@ class AjaxServer:
 
 
 #
+# AnkiNoteParams
+#
+
+class AnkiNoteParams:
+    def __init__(self, params):
+        self.deckName = params.get('deckName')
+        self.modelName = params.get('modelName')
+        self.fields = params.get('fields', {})
+        self.tags = params.get('tags', [])
+
+        class Audio:
+            def __init__(self, params):
+                self.url = params.get('url')
+                self.filename = params.get('filename')
+                self.skipHash = params.get('skipHash')
+                self.fields = params.get('fields', [])
+
+            def validate(self):
+                return (
+                    verifyString(self.url) and
+                    verifyString(self.filename) and os.path.dirname(self.filename) == '' and
+                    verifyStringList(self.fields) and
+                    (verifyString(self.skipHash) or self.skipHash is None)
+                )
+
+        audio = Audio(params.get('audio', {}))
+        self.audio = audio if audio.validate() else None
+
+
+    def validate(self):
+        return (
+            verifyString(self.deckName) and
+            verifyString(self.modelName) and
+            type(self.fields) == dict and verifyStringList(list(self.fields.keys())) and verifyStringList(list(self.fields.values())) and
+            type(self.tags) == list and verifyStringList(self.tags)
+        )
+
+
+#
 # AnkiBridge
 #
 
 class AnkiBridge:
-    def addNote(self, deckName, modelName, fields, tags, audio):
+    def addNote(self, params):
         collection = self.collection()
         if collection is None:
             return
 
-        note = self.createNote(deckName, modelName, fields, tags)
+        note = self.createNote(params)
         if note is None:
             return
 
-        if audio is not None and len(audio['fields']) > 0:
-            data = audioDownload(audio['kana'], audio['kanji'])
-            if data is not None and not audioIsPlaceholder(data):
-                filename = audioBuildFilename(audio['kana'], audio['kanji'])
-                audioInject(note, audio['fields'], filename)
-                self.media().writeData(filename, data)
+        if params.audio is not None and len(params.audio.fields) > 0:
+            data = download(params.audio.url)
+            if data is not None:
+                if params.audio.skipHash is None:
+                    skip = False
+                else:
+                    m = hashlib.md5()
+                    m.update(data)
+                    skip = params.audio.skipHash == m.hexdigest()
+
+                if not skip:
+                    audioInject(note, params.audio.fields, params.audio.filename)
+                    self.media().writeData(params.audio.filename, data)
 
         self.startEditing()
         collection.addNote(note)
@@ -259,39 +343,34 @@ class AnkiBridge:
         return note.id
 
 
-    def canAddNote(self, deckName, modelName, fields):
-        return bool(self.createNote(deckName, modelName, fields))
+    def canAddNote(self, note):
+        return bool(self.createNote(note))
 
 
-    def createNote(self, deckName, modelName, fields, tags=[]):
+    def createNote(self, params):
         collection = self.collection()
         if collection is None:
             return
 
-        model = collection.models.byName(modelName)
+        model = collection.models.byName(params.modelName)
         if model is None:
             return
 
-        deck = collection.decks.byName(deckName)
+        deck = collection.decks.byName(params.deckName)
         if deck is None:
             return
 
         note = anki.notes.Note(collection, model)
         note.model()['did'] = deck['id']
-        note.tags = tags
+        note.tags = params.tags
 
-        for name, value in fields.items():
+        for name, value in params.fields.items():
             if name in note:
                 note[name] = value
 
-        if not note.dupeOrEmpty():
+        doe = note.dupeOrEmpty()
+        if not doe or doe == 2:
             return note
-
-
-    def browseNote(self, noteId):
-        browser = aqt.dialogs.open('Browser', self.window())
-        browser.form.searchEdit.lineEdit().setText('nid:{0}'.format(noteId))
-        browser.onSearch()
 
 
     def startEditing(self):
@@ -344,24 +423,34 @@ class AnkiBridge:
 #
 
 class AnkiConnect:
-    def __init__(self, interval=25):
+    def __init__(self):
         self.anki = AnkiBridge()
         self.server = AjaxServer(self.handler)
-        self.server.listen()
 
-        self.timer = PyQt4.QtCore.QTimer()
-        self.timer.timeout.connect(self.advance)
-        self.timer.start(interval)
+        try:
+            self.server.listen()
 
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.advance)
+            self.timer.start(TICK_INTERVAL)
+        except:
+            QMessageBox.critical(
+                self.anki.window(),
+                'AnkiConnect',
+                'Failed to listen on port {}.\nMake sure it is available and is not in use.'.format(NET_PORT)
+            )
 
     def advance(self):
         self.server.advance()
 
 
     def handler(self, request):
-        action = 'api_' + (request.get('action') or '')
+        action = 'api_' + request.get('action', '')
         if hasattr(self, action):
-            return getattr(self, action)(**(request.get('params') or {}))
+            try:
+                return getattr(self, action)(**(request.get('params') or {}))
+            except TypeError:
+                return None
 
 
     def api_deckNames(self):
@@ -377,36 +466,52 @@ class AnkiConnect:
 
 
     def api_addNote(self, note):
-        return self.anki.addNote(
-            note['deckName'],
-            note['modelName'],
-            note['fields'],
-            note['tags'],
-            note.get('audio')
-        )
+        params = AnkiNoteParams(note)
+        if params.validate():
+            return self.anki.addNote(params)
+
+
+    def api_addNotes(self, notes):
+        results = []
+        for note in notes:
+            params = AnkiNoteParams(note)
+            if note.validate():
+                results.append(self.anki.addNote(params))
+            else:
+                results.append(None)
+
+        return results
 
 
     def api_canAddNotes(self, notes):
         results = []
         for note in notes:
-            results.append(self.anki.canAddNote(
-                note['deckName'],
-                note['modelName'],
-                note['fields']
-            ))
+            params = AnkiNoteParams(note)
+            results.append(params.validate() and self.anki.canAddNote(params))
 
         return results
 
 
-    def api_features(self):
-        features = {}
-        for name in dir(self):
-            method = getattr(self, name)
-            if name.startswith('api_') and callable(method):
-                features[name[4:]] = list(method.func_code.co_varnames[1:])
+    def api_upgrade(self):
+        response = QMessageBox.question(
+            self.anki.window(),
+            'AnkiConnect',
+            'Upgrade to the latest version?',
+            QMessageBox.Yes | QMessageBox.No
+        )
 
-        return features
+        if response == QMessageBox.Yes:
+            data = download(URL_UPGRADE)
+            if data is None:
+                QMessageBox.critical(self.anki.window, 'AnkiConnect', 'Failed to download latest version.')
+            else:
+                path = os.path.splitext(__file__)[0] + '.py'
+                with open(path, 'w') as fp:
+                    fp.write(makeStr(data))
+                QMessageBox.information(self.anki.window(), 'AnkiConnect', 'Upgraded to the latest version, please restart Anki.')
+                return True
 
+        return False
 
     def api_version(self):
         return API_VERSION
